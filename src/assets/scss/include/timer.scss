@@ -126,7 +126,7 @@ input:checked[type="checkbox"]::after {
 }
 
 .timer__change-values-input-wr {
-  margin-right: 20px;
+  margin: 0 20px 20px 0;
 }
 
 .timer__change-values-input-title {
@@ -163,5 +163,11 @@ input:checked[type="checkbox"]::after {
   &:hover {
     color: $white;
     background-color: $red;
+  }
+}
+
+@include media('ml'){
+  .timer__timer-imgs {
+    display: none;
   }
 }
