@@ -1,0 +1,167 @@
+@import '../vars.scss';
+@import '../mixins.scss';
+
+.timer {
+  margin: 90px 0;
+}
+
+.timer__title {
+  font-family: $ff2;
+  font-weight: 400;
+  font-size: rem(22);
+  line-height: 1.18;
+}
+
+.timer__long-chill {
+  margin-top: 20px;
+}
+
+.timer__ong-chill-title {
+  margin-right: 10px;
+}
+
+.timer__long-chill-toggle {
+  position: relative;
+  overflow: hidden;
+}
+
+input[type="checkbox"] {
+  position: relative;
+  appearance: none;
+  width: 50px;
+  height: 30px;
+  background-color: $white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+input:checked[type="checkbox"] {
+  background-color: $red;
+}
+
+input[type="checkbox"]::after {
+  position: absolute;
+  content: "";
+  left: 5px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: $red;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: all 0.4s;
+}
+
+input:checked[type="checkbox"]::after {
+  left: 25px;
+  background-color: $white;
+}
+
+
+.timer__timer-title {
+  font-weight: 400;
+  font-size: rem(20);
+  line-height: 1;
+  margin-top: 30px;
+}
+
+.timer__timer-time-left {
+  margin: 20px 0;
+  font-weight: 400;
+  font-size: rem(48);
+  line-height: 1;
+}
+
+.timer__timer-btn {
+  padding: 10px 20px;
+  margin-right: 10px;
+  font-size: rem(18);
+  line-height: 1;
+  color: $red;
+  background-color: $white;
+  border-radius: 10px;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all $as $ae;
+
+  &:hover {
+    color: $white;
+    background-color: $red;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.timer__timer-imgs {
+  margin-left: 100px;
+}
+
+.timer__timer-img {
+  width: 250px;
+}
+
+.timer__change-values {
+  margin-top: 40px;
+}
+
+.timer__change-values-title {
+  background-color: unset;
+  border: none;
+  text-decoration: underline;
+  font-size: rem(20);
+  line-height: 1;
+  transition: color $as $ae;
+
+  &:hover {
+    color: $red;
+  }
+}
+
+.timer__change-values-inputs {
+  margin-top: 20px;
+}
+
+.timer__change-values-input-wr {
+  margin-right: 20px;
+}
+
+.timer__change-values-input-title {
+  margin-bottom: 10px;
+}
+
+.timer__change-values-input {
+  padding: 10px 20px;
+  background-color: unset;
+  border: 1px solid $white;
+  outline: none;
+  border-radius: 10px;
+  width: 200px;
+
+  &::placeholder {
+    color: rgba($white, 0.7);
+
+  }
+}
+
+.timer__change-values-btn {
+  padding: 10px 20px;
+  margin: 20px 10px 0 0;
+  font-size: rem(18);
+  line-height: 1;
+  color: $red;
+  background-color: $white;
+  border-radius: 10px;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all $as $ae;
+
+  &:hover {
+    color: $white;
+    background-color: $red;
+  }
+}

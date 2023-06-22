@@ -1,0 +1,245 @@
+@use 'sass:math';
+@use "sass:map";
+@use "sass:string";
+
+//Mixins Library
+
+/* rem */
+@function rem($pxsize ) {
+	@if ($pxsize and $fs ) {
+		@return math.div($pxsize, $fs ) * 1rem;
+	}
+}
+
+
+/* padding */
+@function space($padding ) {
+	@if ($padding and $space ) {
+		@return $padding * $space (+px);
+	}
+}
+
+@mixin bigPadding($paddingLeft: 0, $paddingRight: 0) {
+
+	/* @debug $big_pad * 1% */
+	@if ($big_pad ) {
+		@if ($paddingLeft > 0) {
+			padding-left: ($big_pad * $paddingLeft * 1%);
+
+			@include media('tm') {
+				padding-left: 0;
+			}
+		}
+
+		@if ($paddingRight > 0) {
+			padding-right: ($big_pad * $paddingRight * 1%);
+
+			@include media('tm') {
+				padding-right: 0;
+			}
+		}
+	}
+}
+
+/* column generator */
+@mixin gridColumn($total-columns: 8) {
+
+	$prefix: '';
+
+	@if $total-columns !=8 {
+		@include media('ml') {
+			$prefix: '-ml';
+		}
+
+		@include media('mm') {
+			$prefix: '-mm';
+		}
+	}
+
+	// column
+	/* 	%grid-column {
+		width: 100%;
+		padding-right: $grid_pad+px;
+		padding-left: $grid_pad+px;
+	}
+
+	@include media ('tm') {
+		%grid-column {
+			width: 100%;
+			padding-right: 8px;
+			padding-left: 8px;
+		}
+	} */
+
+	@for $i from 1 through $total-columns {
+
+		$percent: math.div($i, $total-columns );
+
+		@if $percent ==0% {
+			$percent: 0;
+		}
+
+		.col#{$prefix}-#{$i} {
+			width: 100%;
+			padding-right: $grid_pad+px;
+			padding-left: $grid_pad+px;
+			flex: 0 0 $percent*100%;
+			max-width: $percent*100%;
+			//overflow: hidden;
+		}
+
+		@include media ('tm') {
+			.col#{$prefix}-#{$i} {
+				width: 100%;
+				padding-right: 8px;
+				padding-left: 8px;
+				flex: 0 0 $percent*100%;
+				max-width: $percent*100%;
+				//overflow: hidden;
+			}
+		}
+	}
+
+	// offset
+	@for $i from 0 through $total-columns - 1 {
+
+		$percent: math.div($i, $total-columns );
+
+		@if $percent ==0% {
+			$percent: 0;
+		}
+
+		.offset#{$prefix}-#{$i} {
+			margin-left: $percent*100%;
+		}
+
+		.offset#{$prefix}-right-#{$i} {
+			margin-right: $percent*100%;
+		}
+
+	}
+
+	//order
+	@for $i from 1 through $total-columns {
+		.order-#{$i} {
+			order: $i;
+		}
+
+		@if $i ==$total-columns {
+			.order-last {
+				order: $i;
+			}
+		}
+
+		@if $i ==1 {
+			.order-first {
+				order: $i;
+			}
+		}
+	}
+
+}
+
+
+// time step (ms), all number, prefix, CSS property
+@mixin animationDelay($time: 50, $all_number: 30, $prefix: 'as', $property: 'transition-delay') {
+
+	@for $i from 0 through $all_number {
+
+		$time_res: ($i*$time)+ms;
+
+		@if $i ==0 {
+			$time_res: 0;
+		}
+
+		.#{$prefix}-#{$i} {
+			#{$property}: $time_res;
+		}
+
+	}
+
+}
+
+
+/* input placeholder */
+@mixin inputPlaceholder($color, $font-weight, $opacity) {
+	&::-webkit-input-placeholder {
+		color: $color;
+		font-weight: $font-weight;
+		opacity: $opacity;
+	}
+
+	&:-moz-placeholder {
+		color: $color;
+		font-weight: $font-weight;
+		opacity: $opacity;
+	}
+
+	&::-moz-placeholder {
+		color: $color;
+		font-weight: $font-weight;
+		opacity: $opacity;
+	}
+
+	&:-ms-input-placeholder {
+		color: $color;
+		font-weight: $font-weight;
+		opacity: $opacity;
+	}
+
+}
+
+
+// media
+
+@mixin media($size, $debug: false) {
+
+	$media_short: ();
+
+	@each $name,
+	$value in $media {
+		$media_short_name: string.slice($name, 1, 1)+string.slice($name, -1, -1);
+		$media_short: map.set($media_short, $media_short_name, $value );
+	}
+
+	@if $debug {
+		@debug "Допустимо";
+		@debug $media;
+		@debug "или";
+		@debug $media_short;
+		@debug "Получено - "+$size;
+	}
+
+	$media_sizes: map.get($media, $size );
+	$short_name: string.slice($size, 1, 1) + string.slice($size, -1, -1);
+
+	@if $debug {
+		@debug $short_name;
+		@debug $media_sizes;
+	}
+
+	@if ($media_sizes or map.get($media_short, $size )) {
+
+		@if $debug {
+			@debug "### все хорошо, выключай debug / @include media( "+$size (+" ) ###");
+		}
+
+		@if ($media_sizes ) {
+			@media (max-width: ($media_sizes + px)) {
+				@content;
+			}
+		}
+
+		@else {
+			@media (max-width: (map.get($media_short, $size ) + px)) {
+				@content;
+			}
+		}
+
+	}
+
+	@else {
+		@debug "------------- что то пошло не так, включай debug / @include media( "+$size (+", debug ) -------------");
+	}
+
+}

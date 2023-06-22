@@ -1,0 +1,243 @@
+/* Animate */
+
+[class*="as-"],
+[class*="pra-"] {
+    transition-property: transform, opacity;
+    transition-duration: $as;
+    opacity: 0;
+}
+
+/*
+	animationDelay(
+		time step (ms), 
+		all number, 
+		prefix (default 'as'), 
+		CSS property (default 'transition-delay')
+	)
+*/
+@include animationDelay(50, 50);
+@include animationDelay(100, 30, 'ad', 'animation-delay');
+@include animationDelay(30, 50, 'pra');
+
+
+.from-top {
+    transform: translate3d(0, -100px, 0);
+    opacity: 0;
+}
+
+.from-top-max {
+    transform: translate3d(0, -1000px, 0);
+    opacity: 0;
+    transition-timing-function: ease-out;
+}
+
+.from-left {
+    transform: translate3d(-100px, 0, 0);
+}
+
+.from-right {
+    transform: translate3d(100px, 0, 0);
+}
+
+.from-bottom {
+    transform: translate3d(0, 100px, 0);
+}
+
+.from-bottom-max {
+    transform: translate3d(0, 1000px, 0);
+    opacity: 0;
+    transition-timing-function: ease-out;
+}
+
+.from-min-zoom {
+    transform: scale(0.5) translate3d(0, 0, 0);
+    opacity: 0;
+}
+
+.from-zoom {
+    transform: scale(0) translate3d(0, 0, 0);
+    opacity: 0;
+}
+
+.from-zoom-top {
+    transform: scale(0.7) translate3d(0, -50px, 0);
+    opacity: 0;
+}
+
+.from-zoom-bottom {
+    transform: scale(0.7) translate3d(0, 50px, 0);
+    opacity: 0;
+}
+
+.from-zoom-left {
+    transform: scale(0.7) translate3d(-100px, 0, 0);
+    opacity: 0;
+}
+
+.from-zoom-right {
+    transform: scale(0.7) translate3d(100px, 0, 0);
+    opacity: 0;
+}
+
+.from-zoom-left-max {
+    transform:
+        /*scale(0.1)*/
+        translate3d(-100vw, 0, 0);
+    transform-origin: 0 50%;
+    opacity: 0;
+}
+
+.from-zoom-right-max {
+    transform:
+        /*scale(0.1)*/
+        translate3d(100vw, 0, 0);
+    transform-origin: 100% 50%;
+    opacity: 0;
+}
+
+.from-above {
+    transform: scale(1.2) translate3d(0, 0, 0);
+}
+
+.from-center {
+    transform: scale(0.8) translate3d(0, 0, 0);
+}
+
+.from-opacity {
+    opacity: 0;
+}
+
+.fade-in {
+    transform: scale(1) translate3d(0, 0, 0);
+}
+
+.from-blur {
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: blur(50px);
+}
+
+.js-page-ready .js-animate [class*="as-"] {
+    opacity: 1;
+    backface-visibility: hidden;
+    visibility: visible;
+    transform: scale(1) translate3d(0, 0, 0);
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1);
+    filter: none;
+}
+
+.js-page-ready [class*="pra-"] {
+    opacity: 1;
+    backface-visibility: hidden;
+    visibility: visible;
+    transform: scale(1) translate3d(0, 0, 0);
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1);
+    filter: none;
+}
+
+.js-page-ready .header [class*="as-"]:not(.top-nav__item) {
+    opacity: 1;
+    backface-visibility: hidden;
+    visibility: visible;
+    transform: scale(1) translate3d(0, 0, 0);
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1);
+    filter: none;
+}
+
+.js-page-ready section [class*="as-"]:not(.top-nav__item) {
+    opacity: 1;
+    backface-visibility: hidden;
+    visibility: visible;
+    transform: scale(1) translate3d(0, 0, 0);
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1);
+    filter: none;
+}
+
+.js-page-ready .footer [class*="as-"]:not(.top-nav__item) {
+    opacity: 1;
+    backface-visibility: hidden;
+    visibility: visible;
+    transform: scale(1) translate3d(0, 0, 0);
+    transition-timing-function: cubic-bezier(0.25, 0.1, 0.2, 1);
+    filter: none;
+}
+
+body:not(.js-page-ready) [class*="as-"] {
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+}
+
+@include media('mm') {
+    .js-page-ready .header .header__logo[class*="as-"] {
+        transform: scale(0.8) translate3d(0, 0, 0);
+    }
+}
+
+
+/* Button Animate */
+.button {
+
+    &#{&}_stroke,
+    &#{&}_brackets {
+        transition: color, background 0s ease-out;
+    }
+
+    &#{&}_stroke .button_text_wr,
+    &#{&}_stroke .button_text_wr svg use,
+    &#{&}_brackets .button_text_wr,
+    &#{&}_brackets .button_text_wr svg use,
+    &#{&}_fill {
+        transition: color, background 0.3s ease-out 0s;
+    }
+
+    &#{&}_stroke .button_text_wr:before,
+    &#{&}_brackets .button_text_wr:before {
+        transition: width 0.3s ease-out 0.15s;
+    }
+
+    &#{&}_stroke .button_text_wr:after,
+    &#{&}_brackets .button_text_wr:after {
+        transition: width 0.3s ease-out 0s;
+    }
+
+    &#{&}_stroke:hover .button_text_wr:before,
+    &#{&}_brackets:hover .button_text_wr:before {
+        transition-delay: 0s;
+    }
+
+    &#{&}_stroke:hover .button_text_wr:after,
+    &#{&}_brackets:hover .button_text_wr:after {
+        transition-delay: 0.15s;
+    }
+}
+
+/* Menu animation */
+.header_burger svg,
+.menu-close-top,
+.menu-close-right,
+.menu-close-left,
+.menu-close-bottom {
+    transition: all $as $ae;
+}
+
+
+/* button animate */
+
+@keyframes gorizont-in {
+    from {
+        left: -50%;
+    }
+
+    to {
+        left: 100%;
+    }
+}
+
+@keyframes gorizont-out {
+    from {
+        left: -200%;
+    }
+
+    to {
+        left: -50%;
+    }
+}

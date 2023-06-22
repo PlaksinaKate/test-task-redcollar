@@ -1,0 +1,51 @@
+<section class="timer">
+  <div class="wr">
+    <h2 class="timer__title">Go work!</h2>
+    <div class="timer__long-chill row center">
+      <div class="timer__ong-chill-title">Длительный чилл?</div>
+      <div class="timer__long-chill-toggle-wr">
+        <input type="checkbox" class="timer__long-chill-toggle"/>
+      </div>
+    </div>
+    <div class="timer__timer row">
+      <div class="timer__timer-content">
+        <div class="timer__timer-titles row">
+          <div class="timer__timer-title timer__timer-title_work">Работаем</div>
+          <div class="timer__timer-title timer__timer-titles-chill hidden">Чиллим</div>
+        </div>
+        <div class="timer__timer-time-left">25:00</div>
+        <div class="timer__timer-btns row">
+          <button class="timer__timer-btn timer__timer-btn_go" onclick={timer(1500)}>поехали!</button>
+          <button class="timer__timer-btn timer__timer-btn_interrupt hidden">прервать</button>
+          <button class="timer__timer-btn timer__timer-btn_stop hidden">Все, хватит</button>
+        </div>
+      </div>
+      <div class="timer__timer-imgs">
+        <div class="timer__timer-img timer__timer-img_work hidden">
+          <img src="../assets/img/work.jpg" alt="">
+        </div>
+        <div class="timer__timer-img timer__timer-img_chill hidden">
+          <img src="../assets/img/chill.jpg" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="timer__change-values">
+      <button class="timer__change-values-title">Изменить значения таймера</button>
+      <div class="timer__change-values-inputs row hidden">
+        <div class="timer__change-values-input-wr">
+          <div class="timer__change-values-input-title">Время работы</div>
+          <input type="number" class="timer__change-values-input timer__change-values-input_work" placeholder="Укажите время в минутах">
+        </div>
+        <div class="timer__change-values-input-wr">
+          <div class="timer__change-values-input-title">Время чилла</div>
+          <input type="number" class="timer__change-values-input timer__change-values-input_chill" placeholder="Укажите время в минутах">
+        </div>
+        <div class="timer__change-values-input-wr">
+          <div class="timer__change-values-input-title">Время длительного чилла</div>
+          <input type="number" class="timer__change-values-input timer__change-values-input_long-chill" placeholder="Укажите время в минутах">
+        </div>
+      </div>
+      <button class="timer__change-values-btn hidden">Изменить</button>
+    </div>
+  </div>
+</section>

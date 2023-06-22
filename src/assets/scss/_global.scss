@@ -1,0 +1,35 @@
+
+/* background animate */
+@property --angle {
+	syntax: '<angle>';
+	initial-value: 120deg;
+	inherits: false;
+}
+
+:root {
+	--angle: 120deg;
+}
+
+
+@keyframes background-angle {
+	to {
+		--angle: 480deg;
+	}
+}
+
+
+.visible {
+	display: block !important;
+}
+
+.wr {
+	max-width: ($page_wr+px);
+	padding: 0 ($wr_pad+px);
+	margin: 0 auto;
+	position: relative;
+}
+
+.main-svg {
+	opacity: 0;
+	height: 0;
+}

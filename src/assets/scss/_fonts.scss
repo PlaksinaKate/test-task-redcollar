@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'TTCommons';
+  src: local('TTCommons'), local('TTCommons'),
+      url('../fonts/TTCommons-Regular.woff2') format('woff2'),
+      url('../fonts/TTCommons-Regular.woff') format('woff'),
+      url('../fonts/TTCommons-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Redcollar';
+  src: local('Redcollar'), local('Redcollar'),
+      url('../fonts/Redcollar.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+

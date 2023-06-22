@@ -1,0 +1,21 @@
+@import '../vars.scss';
+@import '../mixins.scss';
+
+
+header {
+  padding: 26px 0 8px;
+}
+
+.header__logo {
+  text-align: right;
+}
+
+.header__logo-link {
+  display: block;
+  color: $white;
+  transition: color $as $ae;
+
+  &:hover {
+    color: $red;
+  }
+}
